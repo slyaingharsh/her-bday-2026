@@ -1443,6 +1443,7 @@ function onS4() {
     const cp = document.getElementById('contPrompt'); cp.style.opacity = '0'; setTimeout(() => { cp.style.opacity = '1'; cp.style.animationPlayState = 'running'; cp.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 600, fill: 'forwards' }) }, 2800);
     const cx = innerWidth / 2, cy = innerHeight / 2;[9, 7, 10, 7, 8].forEach((n, i) => setTimeout(() => fireEmojis(cx + rand(-40, 40), cy + rand(-40, 40), n, { wide: true }), i * 350));
 }
+
 /* ===== SCENE 5 — FINAL MESSAGE ===== */
 function initScene5() {
     document.getElementById('card-5').addEventListener('click', e => { if (e.target.id === 'toLetterBtn') return; fireEmojis(e.clientX, e.clientY, randInt(3, 4), { gentle: true }) });
@@ -1824,10 +1825,10 @@ function enterFortune() {
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
-    const hasVisited = localStorage.getItem('hasVisited') === 'true';
     initGrainCanvas(); initParticleCanvas(); initCursorTrail();
-    if (!hasVisited) { initHeart(); initScene2(); initScene3(); initScene4(); initScene5(); initScene6(); SceneManager.transitionTo('scene-1') }
-    else { document.querySelectorAll('.birthday-journey').forEach(s => s.style.display = 'none'); SceneManager.transitionTo('scene-hub', { onEnter: initHub }) }
+    // Always start from the birthday journey (Scene 1)
+    initHeart(); initScene2(); initScene3(); initScene4(); initScene5(); initScene6();
+    SceneManager.transitionTo('scene-1');
     initRoomJars(); initRoomGarden(); initRoomStars(); initRoomSanctuary(); initRoomFortune();
 });
 

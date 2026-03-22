@@ -379,9 +379,9 @@ function enterFortune() {
 
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
-    const hasVisited = localStorage.getItem('hasVisited') === 'true';
     initGrainCanvas(); initParticleCanvas(); initCursorTrail();
-    if (!hasVisited) { initHeart(); initScene2(); initScene3(); initScene4(); initScene5(); initScene6(); SceneManager.transitionTo('scene-1') }
-    else { document.querySelectorAll('.birthday-journey').forEach(s => s.style.display = 'none'); SceneManager.transitionTo('scene-hub', { onEnter: initHub }) }
+    // Always start from the birthday journey (Scene 1)
+    initHeart(); initScene2(); initScene3(); initScene4(); initScene5(); initScene6();
+    SceneManager.transitionTo('scene-1');
     initRoomJars(); initRoomGarden(); initRoomStars(); initRoomSanctuary(); initRoomFortune();
 });
